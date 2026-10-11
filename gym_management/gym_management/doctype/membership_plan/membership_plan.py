@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class MembershipPlane(Document):
+class MembershipPlan(Document):
 	pass
