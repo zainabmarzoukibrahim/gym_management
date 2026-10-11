@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-10-12 00:05:38.403322",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "gym_class",
+  "trainer",
+  "room",
+  "datetime_mdes",
+  "session_date",
+  "start_time",
+  "end_time",
+  "capacity",
+  "booked_count",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "gym_class",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "gym_class",
+   "options": "Gym Class",
+   "reqd": 1
+  },
+  {
+   "fieldname": "trainer",
+   "fieldtype": "Link",
+   "label": "trainer",
+   "options": "Gym Trainer"
+  },
+  {
+   "fieldname": "room",
+   "fieldtype": "Link",
+   "label": "room",
+   "options": "Gym Room"
+  },
+  {
+   "fieldname": "datetime_mdes",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "session_date",
+   "fieldtype": "Date",
+   "label": "session_date"
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "start_time"
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "end_time"
+  },
+  {
+   "fieldname": "capacity",
+   "fieldtype": "Int",
+   "label": "capacity"
+  },
+  {
+   "fieldname": "booked_count",
+   "fieldtype": "Int",
+   "label": "booked_count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "status",
+   "options": "Scheduled\nCompleted\nCancelled"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-12 00:15:23.251060",
+ "modified_by": "Administrator",
+ "module": "Gym Management",
+ "name": "Class Session",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

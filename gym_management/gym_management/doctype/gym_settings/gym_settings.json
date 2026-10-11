@@ -1,0 +1,75 @@
+{
+ "actions": [],
+ "creation": "2026-10-11 21:52:21.476112",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "default_item_group",
+  "default_income_account",
+  "cancellation_window_hours",
+  "enable_waitlist",
+  "no_show_limit",
+  "expiry_reminder_days"
+ ],
+ "fields": [
+  {
+   "fieldname": "default_item_group",
+   "fieldtype": "Link",
+   "label": "default_item_group",
+   "options": "Item Group"
+  },
+  {
+   "fieldname": "default_income_account",
+   "fieldtype": "Link",
+   "label": "default_income_account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "cancellation_window_hours",
+   "fieldtype": "Int",
+   "label": "cancellation_window_hours"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_waitlist",
+   "fieldtype": "Check",
+   "label": "enable_waitlist"
+  },
+  {
+   "fieldname": "no_show_limit",
+   "fieldtype": "Int",
+   "label": "no_show_limit"
+  },
+  {
+   "fieldname": "expiry_reminder_days",
+   "fieldtype": "Int",
+   "label": "expiry_reminder_days"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-11 22:04:14.372130",
+ "modified_by": "Administrator",
+ "module": "Gym Management",
+ "name": "Gym Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
