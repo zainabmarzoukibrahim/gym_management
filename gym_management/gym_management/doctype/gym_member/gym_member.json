@@ -13,7 +13,8 @@
   "gender",
   "photo",
   "status",
-  "emergency_contact_name"
+  "emergency_contact_name",
+  "joined_on"
  ],
  "fields": [
   {
@@ -27,17 +28,20 @@
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "customer",
-   "options": "Customer"
+   "options": "Customer",
+   "unique": 1
   },
   {
    "fieldname": "email",
    "fieldtype": "Data",
-   "label": "email"
+   "label": "email",
+   "options": "Email"
   },
   {
    "fieldname": "phone",
    "fieldtype": "Data",
-   "label": "phone"
+   "label": "phone",
+   "options": "Phone"
   },
   {
    "fieldname": "date_of_birth",
@@ -65,12 +69,18 @@
    "fieldname": "emergency_contact_name",
    "fieldtype": "Data",
    "label": "emergency_contact_name"
+  },
+  {
+   "default": "Today",
+   "fieldname": "joined_on",
+   "fieldtype": "Date",
+   "label": "joined_on"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-11 21:38:23.259390",
+ "modified": "2026-10-12 20:12:08.156745",
  "modified_by": "Administrator",
  "module": "Gym Management",
  "name": "Gym Member",
