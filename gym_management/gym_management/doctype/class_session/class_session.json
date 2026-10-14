@@ -8,7 +8,6 @@
   "gym_class",
   "trainer",
   "room",
-  "datetime_mdes",
   "session_date",
   "start_time",
   "end_time",
@@ -36,10 +35,6 @@
    "fieldtype": "Link",
    "label": "room",
    "options": "Gym Room"
-  },
-  {
-   "fieldname": "datetime_mdes",
-   "fieldtype": "Datetime"
   },
   {
    "fieldname": "session_date",
@@ -77,7 +72,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-12 00:15:23.251060",
+ "modified": "2026-10-13 13:40:13.775074",
  "modified_by": "Administrator",
  "module": "Gym Management",
  "name": "Class Session",

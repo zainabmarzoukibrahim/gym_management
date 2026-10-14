@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import add_days, add_months, getdate,date_diff
+from frappe.utils import add_days, add_months, getdate, date_diff
 
 
 class GymMembership(Document):
@@ -28,7 +28,7 @@ class GymMembership(Document):
         elif plan.duration_type=="Months":
             self.end_date=add_months(
                 getdate(self.start_date),plan.duration_value
-            )	
+            )
             self.classes_remaining = 0
 
         elif plan.duration_type=="Class Pack":
@@ -48,13 +48,31 @@ class GymMembership(Document):
                 }
             )
             if existing_membership:
-                frappe.throw("This member already has an active membership")    
+                frappe.throw("This member already has an active membership")
 
+        self.check_freeze()  
 
+    
+    def check_freeze(self):
+        p = frappe.get_doc("Membership Plan", self.membership_plan)
+        t = 0
+        for r in self.freeze_history:
+            f = getdate(r.freeze_from)
+            e = getdate(r.freeze_to)
+            if e <= f:
+                frappe.throw("Freeze to must be after Freeze from")
+            r.days = date_diff(e, f) + 1
+            t = t + r.days
+        if t > (p.max_freeze_days or 0):
+            frappe.throw("Total freeze days exceed the maximum allowed")
 
+    
+    def before_update_after_submit(self):
+        self.check_freeze()
 
     #create invoice on submit
     def on_submit(self):
+        frappe.db.set_value("Gym Member", self.member, "active_membership", self.name)
         if self .sales_invoice and frappe.db.exists(
             "Sales Invoice",self.sales_invoice
         ):
@@ -70,8 +88,6 @@ class GymMembership(Document):
 
         if not plan.item:
             frappe.throw("This Membership Plan has no linked Item")
-
-
 
         company=frappe.defaults.get_user_default("Company")
         if not company:
@@ -93,6 +109,8 @@ class GymMembership(Document):
         self.db_set("sales_invoice", invoice.name)
 
     def on_cancel(self):
+        frappe.db.set_value("Gym Member", self.member, "active_membership", None)
+        self.db_set("status", "Cancelled")
         if not self.sales_invoice:
             return
 
@@ -145,32 +163,10 @@ class GymMembership(Document):
         if self.status!="Active":
             frappe.throw("Only active memberships can be frozen")
 
-
-        freeze_from = getdate(freeze_from)
-        freeze_to = getdate(freeze_to)
-        if freeze_to<=freeze_from:
-            frappe.throw("Freeze to must be after Freeze from")
-
-
-        plan=frappe.get_doc(
-            "Membership Plan",
-            self.membership_plan
-        )
-
-        days=date_diff(freeze_to,freeze_from)
-        if days<=0:
-            frappe.throw("days must be greater than 0")
-
-        used_days = sum(
-            row.days or 0 for row in self.freeze_history
-        )
-        if used_days+days> (plan.max_freeze_days or 0):
-            frappe.throw("This freeze exceeds the maximum allowed freeze day")
-
+       
         self.append("freeze_history", {
-             "freeze_from": freeze_from,
-             "freeze_to": freeze_to,
-             "days": days,
+             "freeze_from": getdate(freeze_from),
+             "freeze_to": getdate(freeze_to),
              "reason": reason
         })
         self.status = "Frozen"

@@ -71,6 +71,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "status",
@@ -82,6 +83,7 @@
    "label": "classes_remaining"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "freeze_history",
    "fieldtype": "Table",
    "label": "freeze_history",
@@ -110,10 +112,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-12 00:47:58.398974",
+ "modified": "2026-10-14 04:12:47.891859",
  "modified_by": "Administrator",
  "module": "Gym Management",
  "name": "Gym Membership",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {

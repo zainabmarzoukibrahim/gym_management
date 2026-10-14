@@ -43,7 +43,9 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Gym Membership": "gym_management/doctype/gym_membership/gym_membership.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -154,13 +156,13 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 # 	"all": [
 # 		"gym_management.tasks.all"
 # 	],
-# 	"daily": [
-# 		"gym_management.tasks.daily"
-# 	],
+ 	"daily": [
+        "gym_management.tasks.process_membership_expiry"
+	],
 # 	"hourly": [
 # 		"gym_management.tasks.hourly"
 # 	],
@@ -170,7 +172,7 @@ app_license = "mit"
 # 	"monthly": [
 # 		"gym_management.tasks.monthly"
 # 	],
-# }
+ }
 
 # Testing
 # -------

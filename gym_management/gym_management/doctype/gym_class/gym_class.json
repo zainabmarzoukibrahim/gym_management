@@ -34,8 +34,10 @@
   {
    "fieldname": "default_room",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "default_room",
-   "options": "Gym Room"
+   "options": "Gym Room",
+   "reqd": 1
   },
   {
    "fieldname": "duration_minutes",
@@ -56,7 +58,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-12 00:04:32.555336",
+ "modified": "2026-10-13 12:10:54.885987",
  "modified_by": "Administrator",
  "module": "Gym Management",
  "name": "Gym Class",
