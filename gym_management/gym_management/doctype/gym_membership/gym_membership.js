@@ -15,9 +15,16 @@ frappe.ui.form.on("Gym Membership", {
                 status_colors[frm.doc.status] || "gray"
             );
         }
+        let sub=frm.doc.docstatus===1;//submitted
+        let done = frm.doc.status === "Expired" || frm.doc.status === "Cancelled";
+        
 
+        frm.toggle_display("sales_invoice", sub)
+        frm.toggle_display("freeze_history", sub);
+        
+  
         // Freeze Membership
-        if (frm.doc.status === "Active" && !frm.is_new()) {
+        if (frm.doc.docstatus === 1 && frm.doc.status === "Active" && !frm.is_new()) {
             frm.add_custom_button("Freeze", () => {
                 frappe.prompt(
                     [
@@ -60,7 +67,7 @@ frappe.ui.form.on("Gym Membership", {
         }
 
         // Renew Membership
-        if (frm.doc.status === "Expired" && !frm.is_new()) {
+        if (frm.doc.docstatus === 1 && frm.doc.status === "Expired" && !frm.is_new()) {
             frm.add_custom_button("Renew", () => {
                 frappe.confirm(
                     "Are you sure you want to renew this membership?",
@@ -77,5 +84,18 @@ frappe.ui.form.on("Gym Membership", {
                 );
             });
         }
+    },
+    //ظهور class remaining لو الduration type كان class pack
+    membership_plan(frm) {
+        frappe.db.get_value(
+            "Membership Plan",
+            frm.doc.membership_plan,
+            "duration_type"
+        ).then(pack => {
+            frm.toggle_display(
+                "classes_remaining",
+                pack.message.duration_type === "Class Pack"
+            );
+        });
     }
 });

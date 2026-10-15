@@ -163,16 +163,16 @@ scheduler_events = {
  	"daily": [
         "gym_management.tasks.process_membership_expiry"
 	],
-# 	"hourly": [
-# 		"gym_management.tasks.hourly"
-# 	],
+	"hourly": [
+ 		"gym_management.tasks.cancel_expired_bookings"
+ 	],
 # 	"weekly": [
 # 		"gym_management.tasks.weekly"
 # 	],
 # 	"monthly": [
 # 		"gym_management.tasks.monthly"
 # 	],
- }
+}
 
 # Testing
 # -------

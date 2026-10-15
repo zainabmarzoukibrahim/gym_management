@@ -61,7 +61,7 @@ class ClassBooking(Document):
                     ["capacity","booked_count"],
                     as_dict=True
                 )
-                if session_data.booked_count>=session_data.capacity:
+                if (session_data.booked_count or 0)>=session_data.capacity:
                     settings=frappe.get_single("Gym Settings")
                     if settings.enable_waitlist:
                         self.status="Waitlisted"

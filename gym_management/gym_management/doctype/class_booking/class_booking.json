@@ -50,13 +50,14 @@
   {
    "fieldname": "cancelled_on",
    "fieldtype": "Datetime",
-   "label": "cancelled_on"
+   "label": "cancelled_on",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-12 00:21:35.933309",
+ "modified": "2026-10-15 04:36:05.171405",
  "modified_by": "Administrator",
  "module": "Gym Management",
  "name": "Class Booking",

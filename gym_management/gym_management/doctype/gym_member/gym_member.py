@@ -15,5 +15,6 @@ class GymMember(Document):
             customer = frappe.new_doc("Customer")
             customer.customer_name=self.member_name
             customer.customer_type="Individual"
+            customer.customer_group = "Individual"
             customer.insert()
             self.customer=customer.name
