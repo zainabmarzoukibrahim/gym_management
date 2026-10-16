@@ -44,7 +44,8 @@ app_license = "mit"
 
 # include js in doctype views
 doctype_js = {
-    "Gym Membership": "gym_management/doctype/gym_membership/gym_membership.js"
+    "Gym Membership": "gym_management/doctype/gym_membership/gym_membership.js",
+	"Class Booking": "gym_management/doctype/class_booking/class_booking.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -173,7 +174,11 @@ scheduler_events = {
 # 		"gym_management.tasks.monthly"
 # 	],
 }
-
+fixtures = [
+    {"dt": "Role", "filters": [["name", "in", ["Gym Manager", "Front Desk", "Trainer"]]]},
+    {"dt": "Calendar View", "filters": [["reference_doctype", "=", "Class Session"]]},
+    {"dt": "Item Group", "filters": [["name", "=", "Gym Services"]]},
+]
 # Testing
 # -------
 

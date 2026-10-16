@@ -1,11 +1,13 @@
 R1. ERPNext Subscription vs. Custom Logic
-Decision: I chose custom membership management logic using the Gym Membership DocType and ERPNext's Sales Invoice for billing, instead of using ERPNext Subscription.
+Decision: I chose custom membership management logic using the Gym Membership DocType and ERPNext's Sales Invoice  instead of using ERPNext Subscription.
    Reason: Gym memberships should not renew automatically. A new membership is created during renewal to preserve membership history and allow renewal to be handled explicitly.
 
 
 R2 How did you model trainers: custom fields on Employee, a
 separate Gym Trainer, or something else? Why?
 
+I created a separate custom DocType called "Gym Trainer" and added a Link field to the standard "Employee" DocType.
+I chose this design because trainers have gym-specific information, such as specialties, that should be managed separately from general employee data. Linking to "Employee" allows us to reuse the existing employee record without duplicating employee information, while keeping the trainer-specific logic independent.
 
 
 
@@ -32,4 +34,6 @@ Frappe Forum:Consulted a community discussion
 JavaScript Guide and Reference: 
 Used to remember some JavaScript syntax 
 
-ChatGPT and Claude: Used as supplementary learning and clarification tools to understand technical concepts, explore implementation approaches, and troubleshoot code. 
+ChatGPT and Claude: Used as supplementary learning and clarification tools to understand technical concepts, explore implementation approaches, and troubleshoot code.
+
+Search about services and buildin features that introduced by frappe framework.

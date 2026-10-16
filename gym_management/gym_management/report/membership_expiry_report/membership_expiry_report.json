@@ -1,0 +1,34 @@
+{
+ "add_total_row": 1,
+ "add_translate_data": 1,
+ "columns": [],
+ "creation": "2026-10-16 20:16:26.272118",
+ "disable_prepared_report_automation": 1,
+ "disabled": 1,
+ "docstatus": 0,
+ "doctype": "Report",
+ "doctype_to_sync": [],
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-10-16 20:16:53.558414",
+ "modified_by": "Administrator",
+ "module": "Gym Management",
+ "name": "Membership Expiry Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Gym Membership",
+ "report_name": "Membership Expiry Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Gym Manager"
+  }
+ ],
+ "snapshot_report": 1,
+ "timeout": 0
+}

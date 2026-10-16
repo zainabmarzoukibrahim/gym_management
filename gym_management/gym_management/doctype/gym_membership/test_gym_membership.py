@@ -40,3 +40,5 @@ class TestGymMembership(FrappeTestCase):
         })
 
 
+        with self.assertRaises(frappe.ValidationError):
+             membership.insert()

@@ -1,0 +1,13 @@
+[
+ {
+  "all_day": 0,
+  "docstatus": 0,
+  "doctype": "Calendar View",
+  "end_date_field": "end_datetime",
+  "modified": "2026-10-16 05:48:31.473232",
+  "name": "test calender",
+  "reference_doctype": "Class Session",
+  "start_date_field": "start_datetime",
+  "subject_field": "gym_class"
+ }
+]

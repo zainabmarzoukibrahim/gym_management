@@ -14,7 +14,8 @@
   "photo",
   "status",
   "emergency_contact_name",
-  "joined_on"
+  "joined_on",
+  "active_membership"
  ],
  "fields": [
   {
@@ -75,12 +76,18 @@
    "fieldname": "joined_on",
    "fieldtype": "Date",
    "label": "joined_on"
+  },
+  {
+   "fieldname": "active_membership",
+   "fieldtype": "Link",
+   "label": "active_membership",
+   "options": "Gym Membership"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-12 20:12:08.156745",
+ "modified": "2026-10-16 20:41:49.539421",
  "modified_by": "Administrator",
  "module": "Gym Management",
  "name": "Gym Member",
