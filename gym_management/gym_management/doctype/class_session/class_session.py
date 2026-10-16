@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import get_datetime, add_to_date, get_time
+from frappe.utils import get_datetime, add_to_date, get_time,getdate
 
 
 class ClassSession(Document):
@@ -26,6 +26,18 @@ class ClassSession(Document):
 
         if self.trainer and self.room and self.session_date:
             self.check_overlapping_sessions()
+    def before_save(self):
+        self.set_datetimes()
+
+    def set_datetimes(self):
+        if self.session_date and self.start_time:
+            self.start_datetime = get_datetime(
+                f"{getdate(self.session_date)} {self.start_time}"
+            )
+        if self.session_date and self.end_time:
+            self.end_datetime = get_datetime(
+                f"{getdate(self.session_date)} {self.end_time}"
+            )
 
     def check_overlapping_sessions(self):
         if not self.start_time or not self.end_time:

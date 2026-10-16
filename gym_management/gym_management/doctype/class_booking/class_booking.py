@@ -8,7 +8,7 @@ from frappe.model.document import Document
 
 class ClassBooking(Document):
     def validate(self):
-        if self.member:
+        if self.member and self.is_new():
             #search about active membership of a member
             membership=frappe.db.get_value(
                 "Gym Membership",

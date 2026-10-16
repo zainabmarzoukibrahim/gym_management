@@ -12,7 +12,7 @@ frappe.ui.form.on("Gym Membership", {
 
             frm.page.set_indicator(
                 frm.doc.status,
-                status_colors[frm.doc.status] || "gray"
+                status_colors[frm.doc.status] 
             );
         }
         let sub=frm.doc.docstatus===1;//submitted
@@ -72,8 +72,8 @@ frappe.ui.form.on("Gym Membership", {
                 frappe.confirm(
                     "Are you sure you want to renew this membership?",
                     () => {
-                        frm.call("renew_membership").then((r) => {
-                            if (r.message) {
+                        frm.call("renew_membership").then((response) => {
+                            if (response.message) {
                                 frappe.msgprint(
                                     "New membership created: " + r.message
                                 );
@@ -91,10 +91,10 @@ frappe.ui.form.on("Gym Membership", {
             "Membership Plan",
             frm.doc.membership_plan,
             "duration_type"
-        ).then(pack => {
+        ).then(result => {
             frm.toggle_display(
                 "classes_remaining",
-                pack.message.duration_type === "Class Pack"
+                result.message.duration_type === "Class Pack"
             );
         });
     }

@@ -54,16 +54,16 @@ class GymMembership(Document):
 
     
     def check_freeze(self):
-        p = frappe.get_doc("Membership Plan", self.membership_plan)
-        t = 0
-        for r in self.freeze_history:
-            f = getdate(r.freeze_from)
-            e = getdate(r.freeze_to)
-            if e <= f:
+        membershipplan = frappe.get_doc("Membership Plan", self.membership_plan)
+        totalfreeze = 0
+        for record in self.freeze_history:
+            freezefrom = getdate(record.freeze_from)
+            freezeto = getdate(record.freeze_to)
+            if freezeto <= freezefrom:
                 frappe.throw("Freeze to must be after Freeze from")
-            r.days = date_diff(e, f) + 1
-            t = t + r.days
-        if t > (p.max_freeze_days or 0):
+            record.days = date_diff(freezeto, freezefrom) + 1
+            totalfreeze = totalfreeze + record.days
+        if totalfreeze > (membershipplan.max_freeze_days or 0):
             frappe.throw("Total freeze days exceed the maximum allowed")
 
     
@@ -72,6 +72,7 @@ class GymMembership(Document):
 
     #create invoice on submit
     def on_submit(self):
+        #donot dublicate
         frappe.db.set_value("Gym Member", self.member, "active_membership", self.name)
         if self .sales_invoice and frappe.db.exists(
             "Sales Invoice",self.sales_invoice
@@ -82,11 +83,11 @@ class GymMembership(Document):
         if not member.customer:
             frappe.throw ("this member has no linked customer")
 
-        plan=frappe.get_doc(
+        mimbershipplan=frappe.get_doc(
             "Membership Plan",self.membership_plan
         )
 
-        if not plan.item:
+        if not mimbershipplan.item:
             frappe.throw("This Membership Plan has no linked Item")
 
         company=frappe.defaults.get_user_default("Company")
@@ -97,9 +98,9 @@ class GymMembership(Document):
         invoice.customer=member.customer
         invoice.company=company
         invoice.append("items", {
-            "item_code": plan.item,
+            "item_code": mimbershipplan.item,
             "qty": 1,
-            "rate": plan.price
+            "rate": mimbershipplan.price
         })
         invoice.set_missing_values()
         invoice.calculate_taxes_and_totals()
@@ -126,14 +127,6 @@ class GymMembership(Document):
         # Cancel only submitted invoices
         if invoice.docstatus != 1:
             return
-
-        # Do not cancel invoices that have payments or adjustments
-        if abs(invoice.outstanding_amount - invoice.grand_total) > 0.01:
-            frappe.throw(
-                "This invoice has payments or adjustments. "
-                "Handle the accounting entries before cancelling "
-                "the membership."
-            )
 
         invoice.cancel()
 

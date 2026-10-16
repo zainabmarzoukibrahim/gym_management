@@ -4,7 +4,6 @@
 import frappe
 from frappe.model.document import Document
 
-
 class MembershipPlan(Document):
     def validate(self):
         if self.price < 0:
@@ -14,7 +13,8 @@ class MembershipPlan(Document):
         if not self.item:
             item=frappe.new_doc("Item")
             item.item_code=self.plan_name
-            item.item_group="Services"
+            settings = frappe.get_single("Gym Settings")
+            item.item_group = "Services"
             item.default_unit_of_measure = "Nos"
             item.is_stock_item = 0
             item.insert()

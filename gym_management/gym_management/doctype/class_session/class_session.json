@@ -13,7 +13,9 @@
   "end_time",
   "capacity",
   "booked_count",
-  "status"
+  "status",
+  "start_datetime",
+  "end_datetime"
  ],
  "fields": [
   {
@@ -67,12 +69,26 @@
    "fieldtype": "Select",
    "label": "status",
    "options": "Scheduled\nCompleted\nCancelled"
+  },
+  {
+   "fieldname": "start_datetime",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "start_datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "end_datetime",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "end_datetime",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-13 13:40:13.775074",
+ "modified": "2026-10-16 05:20:26.605653",
  "modified_by": "Administrator",
  "module": "Gym Management",
  "name": "Class Session",
